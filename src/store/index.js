@@ -4,7 +4,8 @@ import actions from './actions'
 import plugins from './plugins'
 import getters from './getters'
 import count from './modules/count'
-import products from './modules/buy'
+import products from './modules/products'
+import cart from './modules/cart'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ export default new Vuex.Store({
   getters,
   modules: {
     count,
-    products
+    products,
+    cart
   },
   plugins
 })

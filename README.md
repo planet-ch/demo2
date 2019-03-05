@@ -1,6 +1,6 @@
 # jinseyun-vue
 
-> A Vue.js project
+> A Vue.js project  vuex商城练手
 
 ## Build Setup
 
@@ -28,3 +28,4 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+

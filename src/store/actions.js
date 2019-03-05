@@ -1,11 +1,11 @@
-import {SET_COUNT,CLEAR_COUNT,BUY_PRODUCTS,GET_PRODUCTS} from './mutations-types'
+import {SET_COUNT,CLEAR_COUNT,ADD_PRODUCTTOCART,GET_PRODUCTS} from './mutations-types'
 
 
 export default {
   setCount: Write(SET_COUNT),
   removeCount: Write(CLEAR_COUNT),
-  addProducts: Ready(BUY_PRODUCTS),
-  getProducts: Ready(GET_PRODUCTS)
+  getProducts: Ready(GET_PRODUCTS),
+  addProductToCart: Ready(ADD_PRODUCTTOCART)
 }
 
 function Write (type) {

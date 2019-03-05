@@ -3,10 +3,18 @@ const allProducts = JSON.parse(window.localStorage.allProducts || [])
 console.log(_products);
 export default {
   getProducts (cb) {
-    setTimeout(() => cb(_products), 100)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(_products)
+      }, 1000)
+    })
   },
   getAllProducts (cb) {
-    setTimeout(() => cb(allProducts), 100)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(allProducts)
+      }, 100)
+    })
   },
   
   buyProducts (products, cb, errorCb) {
