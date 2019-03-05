@@ -9,29 +9,32 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions, mapState } from "vuex";
-    import data from './../api/data'
+    import {mapActions, mapState } from "vuex";
     export default {
         name: "shop",
         data() {
           return {
-            products: [],
             loading: true
           };
         },
         created() {
           // alert('我进class了')
           this.$nextTick(() => {
-            var that = this
-            data.getAllProducts(allProducts => {
-              that.products = allProducts,
-              that.loading = false
+            this.getProducts().then(()=>{
+              this.loading = false
             })
           });
         },
+        computed: mapState({
+          // 箭头函数可使代码更简练
+          products: state => {
+            return state.products.products
+          }
+        }),
         methods: {
+          ...mapActions(["getProducts","addProductToCart"]),
           add(item){
-
+            this.addProductToCart(item)
           }
         }
     }

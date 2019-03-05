@@ -1,10 +1,10 @@
 <template>
     <div class="car">
       <div v-for="item in products" class="product clearfix">
-        {{item}}
-        <b class="add">+</b>
-        <b class="reduce">-</b>
+        <span>{{item.title}}</span>
+        <span>数量：{{item.quantity}}</span>
       </div>
+      <div class="total">总价格: {{total.toFixed(2)}}</div>
     </div>
 </template>
 
@@ -16,18 +16,20 @@
           return {
           };
         },
-        computed: mapState({
-          // 箭头函数可使代码更简练
-          products: state => state.products.products
-        }),
+        computed: {
+          ...mapGetters({
+            products: 'get_cart',
+            total: 'cartTotalPrice'
+          })
+        },
         created() {
           // alert('我进class了')
           this.$nextTick(() => {
-            this.getProducts()
+            // this.getProducts()
           });
         },
         methods: {
-          ...mapActions(["addProducts","getProducts"])
+          // ...mapActions(["addProducts","getProducts"])
         }
     }
 </script>
@@ -57,6 +59,15 @@
           background-color: #3477ed;
         }
       }
+    }
+    .total{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 200px;
+      height: 80px;
+      text-align: center;
+      line-height: 80px;
     }
   }
 </style>
