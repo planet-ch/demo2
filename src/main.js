@@ -5,11 +5,20 @@ import App from './App'
 import routes from './router'
 import VueRouter from 'vue-router'
 import store from './store'
-import './assets/css/common.scss'
-import { InputNumber, Select,Loading } from 'element-ui';
+import './assets/css/style.scss'
+import { InputNumber, Select,Loading,Form,FormItem,Input,Button } from 'element-ui';
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+
+
 Vue.component(InputNumber.name, InputNumber);
+Vue.component(Form.name, Form);
+Vue.component(FormItem.name, FormItem);
+Vue.component(Input.name, Input);
+Vue.component(Button.name, Button);
 Vue.use(VueRouter)
 Vue.use(Loading)
+Vue.use(VueAwesomeSwiper /* { default global options } */)
 let router = new VueRouter({
   routes: routes,
   scrollBehavior: function (to, from, savedPosition) {

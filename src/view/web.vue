@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="web">
       <num></num>
       <showNum></showNum>
     </div>
@@ -18,5 +18,7 @@
 </script>
 
 <style scoped>
-
+  .web{
+    background-color: aqua;
+  }
 </style>

@@ -9,7 +9,7 @@ let routerObj = [
 ]
 export default [
   {
-    path: '/',
+    path: '/web',
     name: 'web',
     component: require('../view/web.vue').default,
     children: routerObj
@@ -22,6 +22,14 @@ export default [
   },
   {
     path: '/',
-    redirect: '/web/'
+    name: 'index',
+    title: '首页',
+    component: require('../view/index.vue').default
+  },
+  {
+    path: '/addProduct',
+    name: 'addProduct',
+    title: '添加商品',
+    component: require('../view/addProduct.vue').default
   },
 ]

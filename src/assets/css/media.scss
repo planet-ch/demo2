@@ -1,0 +1,7 @@
+@charset "utf-8";
+@media screen and (max-width: 480px) {
+  @import 'phone';
+}
+@media screen and (min-width: 481px) {
+  @import 'index';
+}
