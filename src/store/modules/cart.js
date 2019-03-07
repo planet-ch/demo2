@@ -8,8 +8,8 @@ const state = {
 
 const getters = {
   [GET_CART]: (state, getters, rootState) => {
-    return state[PRODUCTS_CART].map(({ id, quantity }) => {
-      const product = rootState[PRODUCTS][PRODUCTS].find(product => product.id === id)
+    return state[PRODUCTS_CART].map(({ productId, quantity }) => {
+      const product = rootState[PRODUCTS][PRODUCTS].find(product => product.productId === productId)
       return {
         title: product.title,
         price: product.price,
@@ -24,15 +24,15 @@ const getters = {
   }
 }
 const mutations = {
-  [PUSHPRODUCTTO_CART] (state, { id }) {
+  [PUSHPRODUCTTO_CART] (state, { productId }) {
     state[PRODUCTS_CART].push({
-      id,
+      productId,
       quantity: 1
     })
   },
   
-  [INCREMENTQUANTITY_CART] (state, { id }) {
-    const cartItem = state[PRODUCTS_CART].find(item => item.id === id)
+  [INCREMENTQUANTITY_CART] (state, { productId }) {
+    const cartItem = state[PRODUCTS_CART].find(item => item.productId === productId)
     cartItem.quantity++
   },
   
@@ -64,14 +64,14 @@ const actions = {
   [ADD_PRODUCTTOCART] ({ state, commit }, product) {
     commit(CHECKOUTSTATUS, null)
     if (product.inventory > 0) {
-      const cartItem = state[PRODUCTS_CART].find(item => item.id === product.id)
+      const cartItem = state[PRODUCTS_CART].find(item => item.productId === product.productId)
       if (!cartItem) {
-        commit(PUSHPRODUCTTO_CART, { id: product.id })
+        commit(PUSHPRODUCTTO_CART, { productId: product.productId })
       } else {
         commit(INCREMENTQUANTITY_CART, cartItem)
       }
       // remove 1 item from stock
-      commit(DECREMENTINVENTORY_PRODUCTS, { id: product.id }, { root: true })
+      commit(DECREMENTINVENTORY_PRODUCTS, { productId: product.productId }, { root: true })
     }
   }
 }

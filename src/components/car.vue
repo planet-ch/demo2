@@ -5,6 +5,7 @@
         <span>数量：{{item.quantity}}</span>
       </div>
       <div class="total">总价格: {{total.toFixed(2)}}</div>
+      <el-button type="primary" @click="toPay()">购买</el-button>
     </div>
 </template>
 
@@ -30,6 +31,10 @@
         },
         methods: {
           // ...mapActions(["addProducts","getProducts"])
+          toPay(){
+            console.log(this.total)
+            debugger
+          }
         }
     }
 </script>

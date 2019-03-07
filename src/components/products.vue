@@ -1,7 +1,9 @@
 <template>
     <div class="shop" v-loading="loading">
       <div v-for="item in products" class="product clearfix">
-        {{item}}
+        <span>{{item.title}}&nbsp;&nbsp;</span>
+        售价：<span>{{item.price}}&nbsp;&nbsp;</span>
+        库存：<span>{{item.inventory}}</span>
         <b class="add" @click="add(item)">+</b>
         <b class="reduce">-</b>
       </div>

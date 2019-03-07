@@ -8,7 +8,6 @@
 <script>
     import car from '@/components/car'
     import products from '@/components/products'
-    import fetch from "./../fetch";
     export default {
         name: "shop",
         components:{
@@ -22,10 +21,6 @@
         },
       created(){
         this.$nextTick(() => {
-          let that = this
-          fetch.getShop().then(res =>{
-            that.params = res.data
-          })
         });
       }
     }

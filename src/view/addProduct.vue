@@ -1,27 +1,32 @@
 <template>
     <div class="addProduct">
-      <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" label-position="right">
+      <el-form :model="product" status-icon :rules="rules2" ref="product" label-width="100px" class="demo-ruleForm" label-position="right">
         <el-form-item label="title" prop="title">
-          <el-input type="text" v-model="ruleForm2.title" autocomplete="off"></el-input>
+          <el-input type="text" v-model="product.title" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="price" prop="price">
-          <el-input type="text" v-model="ruleForm2.price" autocomplete="off"></el-input>
+          <el-input type="text" v-model="product.price" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="inventory" prop="age">
-          <el-input v-model.number="ruleForm2.age"></el-input>
+        <el-form-item label="inventory" prop="inventory">
+          <el-input v-model.number="product.inventory"></el-input>
+        </el-form-item>
+        <el-form-item label="ID">
+          <el-input v-model.number="product.productId"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-          <el-button @click="resetForm('ruleForm2')">重置</el-button>
+          <el-button type="primary" @click="submitForm('product')">提交</el-button>
+          <el-button @click="resetForm('product')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
 </template>
 
 <script>
+  import fetch from "./../fetch";
+import { log } from 'util';
   export default {
     data() {
-      var checkAge = (rule, value, callback) => {
+      var checkInventory = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('库存数量不能为空'));
         }
@@ -50,10 +55,11 @@
         }
       };
       return {
-        ruleForm2: {
+        product: {
           title: '',
           price: '',
-          age: ''
+          inventory: '',
+          productId: 0
         },
         rules2: {
           title: [
@@ -62,8 +68,8 @@
           price: [
             { validator: validateprice, trigger: 'blur' }
           ],
-          age: [
-            { validator: checkAge, trigger: 'blur' }
+          inventory: [
+            { validator: checkInventory, trigger: 'blur' }
           ]
         }
       };
@@ -72,7 +78,9 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            fetch.addProduct(this.product).then(res =>{
+              console.log(res) 
+            })
           } else {
             console.log('error submit!!');
             return false;
